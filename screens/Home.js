@@ -5,9 +5,9 @@ import {
     Text,
     Image,
     FlatList,
-    TouchableOpacity,
+    TouchableOpacity
 } from "react-native"
-import { COLORS, SIZES, icons, FONTS, images } from "../constants";
+import { COLORS, SIZES, FONTS, icons, images } from "../constants"
 
 const Home = () => {
 
@@ -74,25 +74,25 @@ const Home = () => {
         {
             id: 1,
             img: images.promoBanner,
-            title: "Bonus Cashback",
+            title: "Bonus Cashback1",
             description: "Don't miss it. Grab it now!"
         },
         {
             id: 2,
             img: images.promoBanner,
-            title: "Bonus Cashback",
+            title: "Bonus Cashback2",
             description: "Don't miss it. Grab it now!"
         },
         {
             id: 3,
             img: images.promoBanner,
-            title: "Bonus Cashback",
+            title: "Bonus Cashback3",
             description: "Don't miss it. Grab it now!"
         },
         {
             id: 4,
             img: images.promoBanner,
-            title: "Bonus Cashback",
+            title: "Bonus Cashback4",
             description: "Don't miss it. Grab it now!"
         },
     ]
@@ -107,6 +107,7 @@ const Home = () => {
                     <Text style={{ ...FONTS.h1 }}>Hello!</Text>
                     <Text style={{ ...FONTS.body2, color: COLORS.gray }}>ByProgrammers</Text>
                 </View>
+
                 <View style={{ alignItems: 'center', justifyContent: 'center' }}>
                     <TouchableOpacity
                         style={{
@@ -114,24 +115,32 @@ const Home = () => {
                             width: 40,
                             justifyContent: 'center',
                             alignItems: 'center',
-                            backgroundColor: COLORS.lightGray,
-                        }}>
+                            backgroundColor: COLORS.lightGray
+                        }}
+                    >
                         <Image
                             source={icons.bell}
-                            style={{ width: 20, height: 20, tintColor: COLORS.secondary }}
+                            style={{
+                                width: 20,
+                                height: 20,
+                                tintColor: COLORS.secondary
+                            }}
                         />
-                        <View style={{
-                            position: 'absolute',
-                            top: -5,
-                            right: -5,
-                            height: 10,
-                            width: 10,
-                            backgroundColor: COLORS.red,
-                            borderRadius: 5,
-                        }}>
+                        <View
+                            style={{
+                                position: 'absolute',
+                                top: -5,
+                                right: -5,
+                                height: 10,
+                                width: 10,
+                                backgroundColor: COLORS.red,
+                                borderRadius: 5
+                            }}
+                        >
                         </View>
                     </TouchableOpacity>
                 </View>
+
             </View>
         )
     }
@@ -142,7 +151,6 @@ const Home = () => {
                 style={{
                     height: 120,
                     borderRadius: 20,
-                    backgroundColor: COLORS.primary
                 }}
             >
                 <Image
@@ -151,7 +159,7 @@ const Home = () => {
                     style={{
                         width: "100%",
                         height: "100%",
-                        borderRadius: 20,
+                        borderRadius: 20
                     }}
                 />
             </View>
@@ -159,6 +167,7 @@ const Home = () => {
     }
 
     function renderFeatures() {
+
         const Header = () => (
             <View style={{ marginBottom: SIZES.padding * 2 }}>
                 <Text style={{ ...FONTS.h3 }}>Features</Text>
@@ -170,15 +179,17 @@ const Home = () => {
                 style={{ marginBottom: SIZES.padding * 2, width: 60, alignItems: 'center' }}
                 onPress={() => console.log(item.description)}
             >
-                <View style={{
-                    height: 50,
-                    width: 50,
-                    marginBottom: 5,
-                    borderRadius: 20,
-                    backgroundColor: item.backgroundColor,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                }}>
+                <View
+                    style={{
+                        height: 50,
+                        width: 50,
+                        marginBottom: 5,
+                        borderRadius: 20,
+                        backgroundColor: item.backgroundColor,
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                    }}
+                >
                     <Image
                         source={item.icon}
                         resizeMode="contain"
@@ -192,6 +203,7 @@ const Home = () => {
                 <Text style={{ textAlign: 'center', flexWrap: 'wrap', ...FONTS.body4 }}>{item.description}</Text>
             </TouchableOpacity>
         )
+
         return (
             <FlatList
                 ListHeaderComponent={Header}
@@ -212,11 +224,11 @@ const Home = () => {
                 {renderHeader()}
                 {renderBanner()}
                 {renderFeatures()}
-                {PromoHeader()}
+                {renderPromoHeader()}
             </View>
         )
 
-        const PromoHeader = () => (
+        const renderPromoHeader = () => (
             <View
                 style={{
                     flexDirection: 'row',
@@ -227,11 +239,12 @@ const Home = () => {
                     <Text style={{ ...FONTS.h3 }}>Special Promos</Text>
                 </View>
                 <TouchableOpacity
-                    onPress={() => console.log('View All')}
+                    onPress={() => console.log("View All")}
                 >
-                    <Text style={{ ...FONTS.body4, color: COLORS.gray }}>View All</Text>
+                    <Text style={{ color: COLORS.gray, ...FONTS.body4 }}>View All</Text>
                 </TouchableOpacity>
             </View>
+
         )
 
         const renderItem = ({ item }) => (
@@ -242,12 +255,14 @@ const Home = () => {
                 }}
                 onPress={() => console.log(item.title)}
             >
-                <View style={{
-                    height: 80,
-                    borderTopLeftRadius: 20,
-                    borderTopRightRadius: 20,
-                    backgroundColor: COLORS.primary,
-                }}>
+                <View
+                    style={{
+                        height: 80,
+                        borderTopLeftRadius: 20,
+                        borderTopRightRadius: 20,
+                        backgroundColor: COLORS.primary
+                    }}
+                >
                     <Image
                         source={images.promoBanner}
                         resizeMode="cover"
@@ -259,17 +274,18 @@ const Home = () => {
                         }}
                     />
                 </View>
-                <View style={{
-                    padding: SIZES.padding,
-                    backgroundColor: COLORS.lightGray,
-                    borderBottomLeftRadius: 20,
-                    borderBottomRightRadius: 20
 
-                }}>
+                <View
+                    style={{
+                        padding: SIZES.padding,
+                        backgroundColor: COLORS.lightGray,
+                        borderBottomLeftRadius: 20,
+                        borderBottomRightRadius: 20
+                    }}
+                >
                     <Text style={{ ...FONTS.h4 }}>{item.title}</Text>
                     <Text style={{ ...FONTS.body4 }}>{item.description}</Text>
                 </View>
-
             </TouchableOpacity>
         )
 

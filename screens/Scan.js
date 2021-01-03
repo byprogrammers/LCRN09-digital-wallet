@@ -1,14 +1,15 @@
-import React from "react"
+import React from "react";
 import {
     View,
     Text,
     Image,
-    TouchableOpacity,
+    TouchableOpacity
 } from "react-native"
-import { RNCamera } from 'react-native-camera';
+import { RNCamera } from 'react-native-camera'
 import { COLORS, FONTS, SIZES, icons, images } from "../constants";
 
 const Scan = ({ navigation }) => {
+
     function renderHeader() {
         return (
             <View style={{ flexDirection: 'row', marginTop: SIZES.padding * 4, paddingHorizontal: SIZES.padding * 3 }}>
@@ -16,7 +17,7 @@ const Scan = ({ navigation }) => {
                     style={{
                         width: 45,
                         alignItems: 'center',
-                        justifyContent: 'center',
+                        justifyContent: 'center'
                     }}
                     onPress={() => navigation.navigate("Home")}
                 >
@@ -31,7 +32,7 @@ const Scan = ({ navigation }) => {
                 </TouchableOpacity>
 
                 <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                    <Text style={{ color: COLORS.white, ...FONTS.body3 }}> Scan for payment</Text>
+                    <Text style={{ color: COLORS.white, ...FONTS.body3 }}>Scan for Payment</Text>
                 </View>
 
                 <TouchableOpacity
@@ -43,7 +44,7 @@ const Scan = ({ navigation }) => {
                         alignItems: 'center',
                         justifyContent: 'center'
                     }}
-                    onPress={() => console.log("info")}
+                    onPress={() => console.log("Info")}
                 >
                     <Image
                         source={icons.info}
@@ -60,7 +61,13 @@ const Scan = ({ navigation }) => {
 
     function renderScanFocus() {
         return (
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <View
+                style={{
+                    flex: 1,
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                }}
+            >
                 <Image
                     source={images.focus}
                     resizeMode="stretch"
@@ -86,20 +93,24 @@ const Scan = ({ navigation }) => {
                     padding: SIZES.padding * 3,
                     borderTopLeftRadius: SIZES.radius,
                     borderTopRightRadius: SIZES.radius,
-                    backgroundColor: COLORS.white,
+                    backgroundColor: COLORS.white
                 }}
             >
                 <Text style={{ ...FONTS.h4 }}>Another payment methods</Text>
+
                 <View
                     style={{
                         flex: 1,
                         flexDirection: 'row',
                         alignItems: 'flex-start',
-                        marginTop: SIZES.padding * 2,
+                        marginTop: SIZES.padding * 2
                     }}
                 >
                     <TouchableOpacity
-                        style={{ flexDirection: 'row', alignItems: 'center' }}
+                        style={{
+                            flexDirection: 'row',
+                            alignItems: 'center'
+                        }}
                         onPress={() => console.log("Phone Number")}
                     >
                         <View
@@ -115,14 +126,22 @@ const Scan = ({ navigation }) => {
                             <Image
                                 source={icons.phone}
                                 resizeMode="cover"
-                                style={{ height: 25, width: 25, tintColor: COLORS.purple }}
+                                style={{
+                                    height: 25,
+                                    width: 25,
+                                    tintColor: COLORS.purple
+                                }}
                             />
                         </View>
                         <Text style={{ marginLeft: SIZES.padding, ...FONTS.body4 }}>Phone Number</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                        style={{ flexDirection: 'row', alignItems: 'center', marginLeft: SIZES.padding * 2 }}
+                        style={{
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            marginLeft: SIZES.padding * 2
+                        }}
                         onPress={() => console.log("Barcode")}
                     >
                         <View
@@ -133,11 +152,16 @@ const Scan = ({ navigation }) => {
                                 alignItems: 'center',
                                 justifyContent: 'center',
                                 borderRadius: 10
-                            }}>
+                            }}
+                        >
                             <Image
                                 source={icons.barcode}
                                 resizeMode="cover"
-                                style={{ height: 25, width: 25, tintColor: COLORS.primary }}
+                                style={{
+                                    height: 25,
+                                    width: 25,
+                                    tintColor: COLORS.primary
+                                }}
                             />
                         </View>
                         <Text style={{ marginLeft: SIZES.padding, ...FONTS.body4 }}>Barcode</Text>
@@ -147,7 +171,7 @@ const Scan = ({ navigation }) => {
         )
     }
 
-    function onBarcodeRead(result) {
+    function onBarCodeRead(result) {
         console.log(result.data)
     }
 
@@ -155,18 +179,18 @@ const Scan = ({ navigation }) => {
         <View style={{ flex: 1, backgroundColor: COLORS.transparent }}>
             <RNCamera
                 ref={ref => {
-                    this.camera = ref;
+                    this.camera = ref
                 }}
                 style={{ flex: 1 }}
                 captureAudio={false}
                 type={RNCamera.Constants.Type.back}
                 flashMode={RNCamera.Constants.FlashMode.off}
-                onBarCodeRead={onBarcodeRead}
+                onBarCodeRead={onBarCodeRead}
                 androidCameraPermissionOptions={{
-                    title: 'Permission to use camera',
-                    message: 'Camera is required for barcode scanning',
-                    buttonPositive: 'Ok',
-                    buttonNegative: 'Cancel',
+                    title: "Permission to use camera",
+                    message: "Camera is required for barcode scanning",
+                    buttonPositive: "OK",
+                    buttonNegative: "Cancel"
                 }}
             >
                 {renderHeader()}
