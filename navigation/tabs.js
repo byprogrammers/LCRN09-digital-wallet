@@ -1,46 +1,20 @@
 import React from "react";
 import {
     View,
-    Text,
     Image,
     TouchableOpacity,
-    StyleSheet,
-} from 'react-native';
-import { createBottomTabNavigator, BottomTabBar } from "@react-navigation/bottom-tabs";
+    StyleSheet
+} from "react-native";
+import { createBottomTabNavigator, BottomTabBar } from "@react-navigation/bottom-tabs"
 import Svg, {
     Path
-} from 'react-native-svg';
+} from 'react-native-svg'
 import { isIphoneX } from 'react-native-iphone-x-helper'
 
-import { Home, Scan } from "../screens/";
-import { COLORS, icons, SIZES } from "../constants";
+import { Home, Scan } from "../screens"
+import { COLORS, icons } from "../constants"
 
-const Tab = createBottomTabNavigator();
-
-const CustomTabBar = (props) => {
-    if (isIphoneX()) {
-        return (
-            <View>
-                {/* Should only show for iphonex */}
-                <View
-                    style={{
-                        position: 'absolute',
-                        bottom: 0,
-                        left: 0,
-                        right: 0,
-                        height: 30,
-                        backgroundColor: COLORS.white
-                    }}
-                ></View>
-                <BottomTabBar {...props.props} />
-            </View>
-        );
-    } else {
-        return (
-            <BottomTabBar {...props.props} />
-        );
-    }
-}
+const Tab = createBottomTabNavigator()
 
 const TabBarCustomButton = ({ accessibilityLabel, accessibilityState, children, onPress }) => {
 
@@ -48,10 +22,14 @@ const TabBarCustomButton = ({ accessibilityLabel, accessibilityState, children, 
 
     if (isSelected) {
         return (
-            <View
-                style={{ flex: 1, alignItems: 'center' }}
-            >
-                <View style={{ flexDirection: 'row', position: 'absolute', top: 0 }}>
+            <View style={{ flex: 1, alignItems: 'center' }}>
+                <View
+                    style={{
+                        flexDirection: 'row',
+                        position: 'absolute',
+                        top: 0
+                    }}
+                >
                     <View style={{ flex: 1, backgroundColor: COLORS.white }}></View>
                     <Svg
                         width={75}
@@ -103,20 +81,43 @@ const TabBarCustomButton = ({ accessibilityLabel, accessibilityState, children, 
     }
 }
 
+const CustomTabBar = (props) => {
+    if (isIphoneX()) {
+        return (
+            <View>
+                <View
+                    style={{
+                        position: 'absolute',
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        height: 30,
+                        backgroundColor: COLORS.white
+                    }}
+                ></View>
+                <BottomTabBar {...props.props} />
+            </View>
+        )
+    } else {
+        return (
+            <BottomTabBar {...props.props} />
+        )
+    }
+}
+
 const Tabs = () => {
     return (
         <Tab.Navigator
             tabBarOptions={{
                 showLabel: false,
                 style: {
-                    //Position absolute to make nav bar transparent
                     position: 'absolute',
                     bottom: 0,
                     left: 0,
                     right: 0,
                     backgroundColor: "transparent",
                     elevation: 0
-                },
+                }
             }}
             tabBar={(props) => (
                 <CustomTabBar
@@ -133,9 +134,9 @@ const Tabs = () => {
                             source={icons.more}
                             resizeMode="contain"
                             style={{
-                                tintColor: focused ? COLORS.white : COLORS.secondary,
                                 width: 25,
-                                height: 25
+                                height: 25,
+                                tintColor: focused ? COLORS.white : COLORS.secondary
                             }}
                         />
                     ),
@@ -155,14 +156,16 @@ const Tabs = () => {
                             source={icons.scan}
                             resizeMode="contain"
                             style={{
-                                tintColor: focused ? COLORS.white : COLORS.secondary,
                                 width: 25,
-                                height: 25
+                                height: 25,
+                                tintColor: focused ? COLORS.white : COLORS.secondary
                             }}
                         />
                     ),
                     tabBarButton: (props) => (
-                        <TabBarCustomButton {...props} />
+                        <TabBarCustomButton
+                            {...props}
+                        />
                     )
                 }}
             />
@@ -175,18 +178,19 @@ const Tabs = () => {
                             source={icons.user}
                             resizeMode="contain"
                             style={{
-                                tintColor: focused ? COLORS.white : COLORS.secondary,
                                 width: 25,
-                                height: 25
+                                height: 25,
+                                tintColor: focused ? COLORS.white : COLORS.secondary
                             }}
                         />
                     ),
                     tabBarButton: (props) => (
-                        <TabBarCustomButton {...props} />
+                        <TabBarCustomButton
+                            {...props}
+                        />
                     )
                 }}
             />
-
         </Tab.Navigator>
     )
 }
@@ -201,7 +205,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
 
-        elevation: 5,
+        elevation: 5
     }
 })
 
