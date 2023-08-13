@@ -1,9 +1,5 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
+ * Author: ByProgrammers
  */
 
 import React from 'react';
@@ -36,7 +32,7 @@ const App = () => {
                 <Stack.Screen name="SignUp" component={SignUp} />
 
                 {/* Tabs */}
-                <Stack.Screen name="Home" component={Tabs} />
+                <Stack.Screen name="HomeTabs" component={Tabs} />
 
                 {/* <Stack.Screen name="Scan" component={Scan} /> */}
             </Stack.Navigator>

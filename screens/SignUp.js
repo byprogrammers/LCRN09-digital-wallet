@@ -25,20 +25,19 @@ const SignUp = ({ navigation }) => {
     const [modalVisible, setModalVisible] = React.useState(false)
 
     React.useEffect(() => {
-        fetch("https://restcountries.eu/rest/v2/all")
+        fetch("https://restcountries.com/v3.1/all?fields=name,flags,cca3,idd")
             .then(response => response.json())
             .then(data => {
                 let areaData = data.map(item => {
                     return {
-                        code: item.alpha2Code,
-                        name: item.name,
-                        callingCode: `+${item.callingCodes[0]}`,
-                        flag: `https://www.countryflags.io/${item.alpha2Code}/flat/64.png`
+                        code: item.cca3,
+                        name: item.name?.common,
+                        flag: item.flags.png,
+                        callingCode: item.idd?.root + item.idd?.suffixes[0],
                     }
                 })
-
                 setAreas(areaData)
-
+                
                 if (areaData.length > 0) {
                     let defaultData = areaData.filter(a => a.code == "US")
 
@@ -236,7 +235,7 @@ const SignUp = ({ navigation }) => {
                         alignItems: 'center',
                         justifyContent: 'center'
                     }}
-                    onPress={() => navigation.navigate("Home")}
+                    onPress={() => navigation.navigate("HomeTabs")}
                 >
                     <Text style={{ color: COLORS.white, ...FONTS.h3 }}>Continue</Text>
                 </TouchableOpacity>

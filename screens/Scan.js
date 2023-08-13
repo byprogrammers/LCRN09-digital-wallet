@@ -3,16 +3,23 @@ import {
     View,
     Text,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
+    Vibration,
 } from "react-native"
-import { RNCamera } from 'react-native-camera'
+import { Camera, CameraType } from 'react-native-camera-kit';
 import { COLORS, FONTS, SIZES, icons, images } from "../constants";
 
 const Scan = ({ navigation }) => {
-
+    
     function renderHeader() {
         return (
-            <View style={{ flexDirection: 'row', marginTop: SIZES.padding * 4, paddingHorizontal: SIZES.padding * 3 }}>
+            <View style={{ 
+                    width: SIZES.width,
+                    flexDirection: 'row', 
+                    marginTop: SIZES.padding * 4, 
+                    paddingHorizontal: SIZES.padding * 3, 
+                    backgroundColor: COLORS.transparent 
+            }}>
                 <TouchableOpacity
                     style={{
                         width: 45,
@@ -55,28 +62,6 @@ const Scan = ({ navigation }) => {
                         }}
                     />
                 </TouchableOpacity>
-            </View>
-        )
-    }
-
-    function renderScanFocus() {
-        return (
-            <View
-                style={{
-                    flex: 1,
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                }}
-            >
-                <Image
-                    source={images.focus}
-                    resizeMode="stretch"
-                    style={{
-                        marginTop: "-55%",
-                        width: 200,
-                        height: 300
-                    }}
-                />
             </View>
         )
     }
@@ -177,26 +162,34 @@ const Scan = ({ navigation }) => {
 
     return (
         <View style={{ flex: 1, backgroundColor: COLORS.transparent }}>
-            <RNCamera
+            
+            <Camera
                 ref={ref => {
                     this.camera = ref
                 }}
                 style={{ flex: 1 }}
-                captureAudio={false}
-                type={RNCamera.Constants.Type.back}
-                flashMode={RNCamera.Constants.FlashMode.off}
-                onBarCodeRead={onBarCodeRead}
-                androidCameraPermissionOptions={{
-                    title: "Permission to use camera",
-                    message: "Camera is required for barcode scanning",
-                    buttonPositive: "OK",
-                    buttonNegative: "Cancel"
-                }}
-            >
+                cameraType={CameraType.Back}
+                flashMode="off"
+                scanBarcode
+                frameColor="white"
+                laserColor="red"
+                showFrame={true}
+
+                onReadCode={(event) => {
+                    Vibration.vibrate(100);
+                    // setBarcode(event.nativeEvent.codeStringValue);
+                    console.log('barcode', event.nativeEvent.codeStringValue);
+                  }}
+            />
+            <View style={{ position: 'absolute', backgroundColor: COLORS.transparent}}>
                 {renderHeader()}
-                {renderScanFocus()}
-                {renderPaymentMethods()}
-            </RNCamera>
+                {/* {renderScanFocus()} */}
+                
+
+            </View>
+            
+            {renderPaymentMethods()} 
+            
         </View>
     )
 }
